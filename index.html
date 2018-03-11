@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="ToDoListApp">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <title>ToDo List Check Off</title>
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
+  </head>
+<body>
+  <div class="container">
+  <h1>ToDo List</h1>
+
+  <div class="list" ng-controller="ToDoListController as todo">
+    <h3>To Do List</h3>
+    <input type="text" name="ToDoName" ng-model="todo.taskName" placeholder="task name">
+    <input type="date" name="ToDoDate" ng-model="todo.taskDate" placeholder="task date">
+    <button type="button" name="addTaskButton" ng-click="todo.addTask();">Add Task</button>
+    <ol>
+      <li ng-repeat="task in todo.tasks">
+        {{ task.name }} by {{ task.date }}
+        <button type="button" name="taskDoneButton" ng-click="todo.completeTask($index);">Complete</button>
+      </li>
+    </ol>
+  </div>
+
+  <h1>Done List</h1>
+
+  <div class="list" ng-controller="DoneListController as done">
+    <ol>
+      <li ng-repeat="task in done.tasks">
+        {{ task.name }} done on {{ task.date }}
+      </li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>
